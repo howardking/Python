@@ -1,35 +1,56 @@
-# simpleGUI program template
+# Starting point for calculator
 
-# Import the module
 import simplegui
 
-# Define global variables (program state)
-counter = 0
+# Initialize globals
+store = 0
+operand = 0
 
-# Define "helper" functions
-def increment():
-    global counter
-    counter += 1
+# Define functions that manipulate store and operand
+def output():
+    print "Store = ", store
+    print "Operand = ", operand
+    print ""
     
-# Define event handler functions
-def tick():
-    increment()
-    print counter
+def swap():
+    global store, operand
+    store, operand = operand, store
+    output()
     
-def buttonpress():
-    global counter
-    counter = 0
+def add():
+    global store, operand
+    store = store + operand
+    output()
     
-# Create a frame
-frame = simplegui.create_frame("SimpleGUI Test", 100, 100)
+def sub():
+    global store, operand
+    store = store - operand
+    output()
 
-# Register event handler
+def multiply():
+    global store, operand
+    store = store * operand
+    output()
+    
+def div():
+    global store, operand
+    store = float(store) / operand
+    output()
+    
+    
+def enter(inp):
+    global operand
+    operand = float(inp)
+    output()
+frame = simplegui.create_frame("Caculator", 200, 500)
 
-timer = simplegui.create_timer(1000, tick)
-frame.add_button("Click me!", buttonpress)
-
-# Start frame and timers
+frame.add_button("Print", output, 100)
+frame.add_button("Swap", swap, 100)
+frame.add_button("Add", add, 100)
+frame.add_button("Sub", sub, 100)
+frame.add_button("Mul", multiply, 100)
+frame.add_button("Div", div, 100)
+frame.add_input("Enter operand", enter, 100)
 
 frame.start()
-timer.start()
 
