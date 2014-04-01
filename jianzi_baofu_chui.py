@@ -1,6 +1,6 @@
 # jianzi--0
-# baofu --1
-# chui  --2
+# baofu --2
+# chui  --1
 
 import random
 
